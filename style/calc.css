@@ -1,0 +1,28 @@
+/* :root {
+    background-color: rgb(0, 179, 255);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}  */
+
+.calculator {
+    width: 60vmin;
+    height: 60vmin;
+    /* background-color: rgb(4, 27, 80); */
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    box-shadow: 12px 12px 12px;
+
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    padding: 10px 10px;
+    position: relative;
+}
+
+/*  */

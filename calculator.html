@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="./style/button.css">
+    <link rel="stylesheet" href="./style/display.css">
+    <link rel="stylesheet" href="./style/calc.css">
+    <link rel="stylesheet" href="./style/body.css">
+</head>
+
+<body>
+
+
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class=buttons>
+
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('*')">*</button>
+
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('/')">/</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('!')">!</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('0')">0</button>
+
+
+            <button onclick="result()">=</button>
+
+        </div>
+
+
+    </div>
+
+    </div>
+
+
+
+
+    <script>
+        const arr = [0, 0];
+
+        function appendToDisplay(value) {
+            displayValue += value;
+            document.getElementById('display').value = displayValue;
+        }
+
+        function clearDisplay() {
+            displayValue = '';
+            document.getElementById('display').value = displayValue;
+        }
+        function operators(value) {
+            displayValue += '+';
+            document.getElementById('display').value = displayValue;
+        }
+        function result() {
+            const result = result_1(displayValue)
+            document.getElementById('display').value = result;
+            result = toString(displayValue);
+        }
+
+        let displayValue = '';
+
+
+
+
+
+
+
+        function result_1(displayValue) {
+
+
+            count = 0;
+
+            str = "";
+
+            for (i = 0; i < displayValue.length; i++) {
+
+                if (displayValue[i] == '!') {
+                    arr[0] = Number(str);
+                    return result_2('!');
+                }
+                if (displayValue[i] == '+' || displayValue[i] == '-' || displayValue[i] == '*' || displayValue[i] == '/' || i == displayValue.length - 1) {
+
+                    if (i == displayValue.length - 1)
+                        str += displayValue[i];
+
+                    if (count < 1) {
+                        arr[0] = Number(str);
+                        sign = displayValue[i];
+                    }
+
+                    else {
+                        arr[1] = Number(str);
+
+                        arr[0] = result_2(sign);
+                        sign = displayValue[i];
+                    }
+                    str = "";
+                    count++;
+                }
+
+                else {
+                    str += displayValue[i];
+                }
+            }
+            return arr[0];
+        }
+
+        function result_2(cases) {
+
+            switch (cases) {
+                case '+':
+                    {
+                        return arr[0] + arr[1];
+                    }
+                case '*':
+                    {
+                        return arr[0] * arr[1];
+                    }
+                case '-':
+                    {
+                        return arr[0] - arr[1];
+                    }
+                case '/':
+                    {
+                        return arr[0] / arr[1]
+                    }
+                case '!':
+                    {
+                        let fact = 1;
+                        while (arr[0] > 1) {
+
+                            fact *= arr[0];
+                            arr[0] = arr[0] - 1;
+                        }
+
+                        return fact
+                    }
+
+            }
+        }
+
+
+        // var result = result_1(displayValue);
+    </script>
+</body>
+
+</html>
